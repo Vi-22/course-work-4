@@ -62,5 +62,7 @@ public class Application {
         group1.update();
         climber1.update();
         climber2.update();
+        group1.addClimber(climber1);
+        group1.update();
     }
 }

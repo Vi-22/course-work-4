@@ -104,6 +104,7 @@ public class Group extends GeneralDao<Group, Integer> {
         } else if (isOpen) {
             climbers.add(climber);
             climber.setGroup(this);
+            this.isOpen();
         } else {
             System.out.println("В этой группе больше нет мест. Пользователь не добавлен");
         }
@@ -113,6 +114,7 @@ public class Group extends GeneralDao<Group, Integer> {
         this.climbers.remove(climber);
         this.climbers.trimToSize();
         climber.setGroup(null);
+        this.isOpen();
     }
 
     public Mountain getMountain() {
