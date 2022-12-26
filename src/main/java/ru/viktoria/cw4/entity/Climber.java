@@ -9,10 +9,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_clambers")
-public class Climber extends GeneralDao {
+public class Climber extends GeneralDao<Climber, Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="clamber_id")
+    @Column(name = "clamber_id")
     private int id;
     @NotNull
     @Length(min = 3)
@@ -39,7 +39,7 @@ public class Climber extends GeneralDao {
     }
 
     public void setName(String name) {
-        if (name.length()<3) {
+        if (name.length() < 3) {
             throw new IllegalArgumentException("Имя должно содержать не менее 3 символов");
         }
         this.name = name;
@@ -50,7 +50,7 @@ public class Climber extends GeneralDao {
     }
 
     public void setAddress(String address) {
-        if (address.length()<5) {
+        if (address.length() < 5) {
             throw new IllegalArgumentException("Адрес должен содержать не менее 5 символов");
         }
         this.address = address;
@@ -63,6 +63,7 @@ public class Climber extends GeneralDao {
     protected void setGroup(Group group) {
         this.group = group;
     }
+
     @Override
     public String toString() {
         return "Climber{" +

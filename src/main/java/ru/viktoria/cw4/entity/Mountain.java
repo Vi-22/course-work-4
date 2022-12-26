@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_mountains")
-public class Mountain extends GeneralDao {
+public class Mountain extends GeneralDao<Mountain, Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mountain_id")
@@ -48,7 +48,7 @@ public class Mountain extends GeneralDao {
     }
 
     public void setName(String name) {
-        if (name.length()<4)
+        if (name.length() < 4)
             throw new IllegalArgumentException("Название горы должно содержать не менее 4 символов");
         this.name = name;
     }
@@ -58,7 +58,7 @@ public class Mountain extends GeneralDao {
     }
 
     public void setCountry(String country) {
-        if (country.length()<4)
+        if (country.length() < 4)
             throw new IllegalArgumentException("Название страны должно содержать не менее 4 символов");
         this.country = country;
     }
@@ -78,7 +78,7 @@ public class Mountain extends GeneralDao {
     }
 
     protected void setGroup(Group group) {
-    this.group = group;
+        this.group = group;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Mountain extends GeneralDao {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mountain mountain = (Mountain) o;
-        return getId()==mountain.getId();
+        return getId() == mountain.getId();
     }
 
     @Override

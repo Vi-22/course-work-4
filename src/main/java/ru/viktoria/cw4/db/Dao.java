@@ -1,10 +1,11 @@
 package ru.viktoria.cw4.db;
 
 public interface Dao<T, PK> {
-    abstract void save();
+    void save();
 
-    abstract void update();
+    void update();
 
-    abstract void remove();
-    abstract T get (PK pk);
+    void remove();
+
+    T get(PK pk);
 }

@@ -6,7 +6,7 @@ import ru.viktoria.cw4.entity.Mountain;
 
 import java.util.GregorianCalendar;
 
-public class Applacation {
+public class Application {
     public static void main(String[] args) {
         Mountain mountain1 = new Mountain("Арарат", "Турция", 5137);
         Mountain mountain2 = new Mountain("Монблан", "Франция", 4810);
@@ -47,12 +47,20 @@ public class Applacation {
         group1.update();
         group2.update();
         group3.update();
+        mountain1.update();
+        mountain2.update();
+        mountain3.update();
         climber1.update();
         climber2.update();
         climber3.update();
+        climber4.update();
+        climber5.update();
+        climber6.update();
         group2.removeClimber(climber2);
         group1.removeClimber(climber1);
         group2.update();
         group1.update();
+        climber1.update();
+        climber2.update();
     }
 }

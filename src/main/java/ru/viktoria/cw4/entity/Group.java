@@ -9,13 +9,12 @@ import java.util.*;
 
 @Entity
 @Table(name = "tb_groups")
-public class Group extends GeneralDao {
+public class Group extends GeneralDao<Group, Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_number")
     private int number;
     @OneToMany(mappedBy = "group")
-    @JoinColumn(name = "clamber_id")
     private ArrayList<Climber> climbers;
     @NotNull
     private boolean isOpen;
@@ -25,7 +24,6 @@ public class Group extends GeneralDao {
     private Calendar climbDate;
     @NotNull
     @OneToOne(mappedBy = "group")
-    @JoinColumn(name = "mountain_id")
     private Mountain mountain;
 
     public Group() {
@@ -39,17 +37,16 @@ public class Group extends GeneralDao {
         isOpen();
     }
 
-    public  ArrayList<Climber> getClimbers() {
+    public ArrayList<Climber> getClimbers() {
         return climbers;
     }
 
-    public void setClimbers(ArrayList<Climber>  clambers) {
+    protected void setClimbers(ArrayList<Climber> clambers) {
         this.climbers = clambers;
     }
 
-    public boolean isOpen() {
+    protected void isOpen() {
         this.isOpen = (this.climbers == null || this.climbers.size() < this.participantsLimit);
-        return isOpen;
     }
 
     public int getParticipantsLimit() {
@@ -57,7 +54,7 @@ public class Group extends GeneralDao {
     }
 
     public void setParticipantsLimit(int participantsLimit) {
-        if (participantsLimit==0)
+        if (participantsLimit == 0)
             throw new IllegalArgumentException("Количество участников должно быть больше 0");
         this.participantsLimit = participantsLimit;
     }
@@ -67,7 +64,7 @@ public class Group extends GeneralDao {
     }
 
     public void setClimbDate(Calendar climbDate) {
-        if (climbDate==null||climbDate.before(Calendar.getInstance()))
+        if (climbDate == null || climbDate.before(Calendar.getInstance()))
             throw new IllegalArgumentException("Нельзя установить дату в прошлом");
         this.climbDate = climbDate;
     }
@@ -102,7 +99,7 @@ public class Group extends GeneralDao {
     }
 
     public void addClimber(Climber climber) {
-        if(climber.getGroup()==this) {
+        if (climber.getGroup() == this) {
             System.out.println("Альпинист уже был добавлен в эту группу ранее");
         } else if (isOpen) {
             climbers.add(climber);
@@ -111,6 +108,7 @@ public class Group extends GeneralDao {
             System.out.println("В этой группе больше нет мест. Пользователь не добавлен");
         }
     }
+
     public void removeClimber(Climber climber) {
         this.climbers.remove(climber);
         this.climbers.trimToSize();
