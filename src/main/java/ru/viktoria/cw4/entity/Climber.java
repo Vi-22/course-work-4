@@ -2,14 +2,13 @@ package ru.viktoria.cw4.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.validator.constraints.Length;
-import ru.viktoria.cw4.db.GeneralDao;
 
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_clambers")
-public class Climber extends GeneralDao<Climber, Integer> {
+public class Climber {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "clamber_id")

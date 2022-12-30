@@ -2,14 +2,13 @@ package ru.viktoria.cw4.entity;
 
 
 import jakarta.persistence.*;
-import ru.viktoria.cw4.db.GeneralDao;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Entity
 @Table(name = "tb_groups")
-public class Group extends GeneralDao<Group, Integer> {
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_number")

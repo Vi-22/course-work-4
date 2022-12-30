@@ -1,5 +1,6 @@
 package ru.viktoria.cw4;
 
+import ru.viktoria.cw4.db.GeneralDao;
 import ru.viktoria.cw4.entity.Climber;
 import ru.viktoria.cw4.entity.Group;
 import ru.viktoria.cw4.entity.Mountain;
@@ -11,21 +12,23 @@ public class Application {
         Mountain mountain1 = new Mountain("Арарат", "Турция", 5137);
         Mountain mountain2 = new Mountain("Монблан", "Франция", 4810);
         Mountain mountain3 = new Mountain("Эверест", "Непал", 8848);
-        mountain1.save();
-        mountain2.save();
-        mountain3.save();
+        GeneralDao<Mountain, Integer> mountainDao = new GeneralDao<>();
+        mountainDao.save(mountain1);
+        mountainDao.save(mountain2);
+        mountainDao.save(mountain3);
         Climber climber1 = new Climber("Мария", "Карла Маркса 134");
         Climber climber2 = new Climber("Юрий", "Чаренца 1");
         Climber climber3 = new Climber("Олег", "Геворга Джаукяна 54");
         Climber climber4 = new Climber("Михаил", "Мира 32");
         Climber climber5 = new Climber("Святослав", "Ленина 134");
         Climber climber6 = new Climber("Мария", "Типанова 14");
-        climber1.save();
-        climber2.save();
-        climber3.save();
-        climber4.save();
-        climber5.save();
-        climber6.save();
+        GeneralDao<Climber, Integer> climberDao = new GeneralDao<>();
+        climberDao.save(climber1);
+        climberDao.save(climber2);
+        climberDao.save(climber3);
+        climberDao.save(climber4);
+        climberDao.save(climber5);
+        climberDao.save(climber6);
         Group group1 = new Group(2,
                 new GregorianCalendar(2023, 11, 7, 18, 30),
                 mountain1);
@@ -35,34 +38,35 @@ public class Application {
         Group group3 = new Group(2,
                 new GregorianCalendar(2023, 9, 23, 13, 30),
                 mountain3);
-        group1.save();
-        group2.save();
-        group3.save();
+        GeneralDao<Group, Integer> groupDao = new GeneralDao<>();
+        groupDao.save(group1);
+        groupDao.save(group2);
+        groupDao.save(group3);
         group1.addClimber(climber1);
         group2.addClimber(climber2);
         group3.addClimber(climber3);
         group1.addClimber(climber4);
         group2.addClimber(climber5);
         group3.addClimber(climber6);
-        group1.update();
-        group2.update();
-        group3.update();
-        mountain1.update();
-        mountain2.update();
-        mountain3.update();
-        climber1.update();
-        climber2.update();
-        climber3.update();
-        climber4.update();
-        climber5.update();
-        climber6.update();
+        groupDao.update(group1);
+        groupDao.update(group2);
+        groupDao.update(group3);
+        mountainDao.update(mountain1);
+        mountainDao.update(mountain2);
+        mountainDao.update(mountain3);
+        climberDao.update(climber1);
+        climberDao.update(climber2);
+        climberDao.update(climber3);
+        climberDao.update(climber4);
+        climberDao.update(climber5);
+        climberDao.update(climber6);
         group2.removeClimber(climber2);
         group1.removeClimber(climber1);
-        group2.update();
-        group1.update();
-        climber1.update();
-        climber2.update();
+        groupDao.update(group2);
+        groupDao.update(group1);
+        climberDao.update(climber1);
+        climberDao.update(climber2);
         group1.addClimber(climber1);
-        group1.update();
+        groupDao.update(group1);
     }
 }

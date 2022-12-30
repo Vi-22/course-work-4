@@ -8,21 +8,21 @@ public class GeneralDao<T, PK> implements Dao<T, PK> {
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("cw4");
     EntityManager entityManager = factory.createEntityManager();
     @Override
-    public void save() {
+    public void save(T object) {
         entityManager.getTransaction().begin();
-        entityManager.persist(this);
+        entityManager.persist(object);
         entityManager.getTransaction().commit();
     }
     @Override
-    public void update() {
+    public void update(T object) {
         entityManager.getTransaction().begin();
-        entityManager.merge(this);
+        entityManager.merge(object);
         entityManager.getTransaction().commit();
     }
     @Override
-    public void remove() {
+    public void remove(T object) {
         entityManager.getTransaction().begin();
-        entityManager.remove(this);
+        entityManager.remove(object);
         entityManager.getTransaction().commit();
     }
     @Override
