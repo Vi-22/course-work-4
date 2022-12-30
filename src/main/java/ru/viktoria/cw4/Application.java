@@ -5,6 +5,7 @@ import ru.viktoria.cw4.entity.Climber;
 import ru.viktoria.cw4.entity.Group;
 import ru.viktoria.cw4.entity.Mountain;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Application {
@@ -30,13 +31,13 @@ public class Application {
         climberDao.save(climber5);
         climberDao.save(climber6);
         Group group1 = new Group(2,
-                new GregorianCalendar(2023, 11, 7, 18, 30),
+                new GregorianCalendar(2023, Calendar.NOVEMBER, 7, 18, 30),
                 mountain1);
         Group group2 = new Group(3,
-                new GregorianCalendar(2023, 4, 4, 9, 00),
+                new GregorianCalendar(2023, Calendar.APRIL, 4, 9, 0),
                 mountain2);
         Group group3 = new Group(2,
-                new GregorianCalendar(2023, 9, 23, 13, 30),
+                new GregorianCalendar(2023, Calendar.SEPTEMBER, 23, 13, 30),
                 mountain3);
         GeneralDao<Group, Integer> groupDao = new GeneralDao<>();
         groupDao.save(group1);

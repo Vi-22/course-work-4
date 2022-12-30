@@ -124,4 +124,8 @@ public class Group {
         this.mountain = mountain;
         mountain.setGroup(this);
     }
+    public void removeMauntain(Mountain mountain) {
+        this.mountain.removeGroup(this);
+    }
+
 }
