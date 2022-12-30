@@ -22,7 +22,7 @@ public class Climber extends GeneralDao<Climber, Integer> {
     @Length(min = 5)
     @Column(nullable = false)
     private String address;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToMany (fetch = FetchType.LAZY)
     @JoinColumn(name = "group_number")
     private Group group;
 

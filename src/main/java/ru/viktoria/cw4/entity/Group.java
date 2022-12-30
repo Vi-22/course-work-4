@@ -14,7 +14,7 @@ public class Group extends GeneralDao<Group, Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_number")
     private int number;
-    @OneToMany(mappedBy = "group")
+    @ManyToMany(mappedBy = "group")
     private ArrayList<Climber> climbers;
     @NotNull
     private boolean isOpen;
@@ -23,7 +23,7 @@ public class Group extends GeneralDao<Group, Integer> {
     @NotNull
     private Calendar climbDate;
     @NotNull
-    @OneToOne(mappedBy = "group")
+    @ManyToOne
     private Mountain mountain;
 
     public Group() {

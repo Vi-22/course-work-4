@@ -25,8 +25,7 @@ public class Mountain extends GeneralDao<Mountain, Integer> {
     @Length(min = 100)
     private int height;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_number")
+    @OneToMany(mappedBy = "mountain", fetch = FetchType.LAZY)
     private Group group;
 
 
