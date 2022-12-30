@@ -11,10 +11,10 @@ import java.util.*;
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "group_number")
+    @Column(name = "number")
     private int number;
-    @ManyToMany(mappedBy = "group")
-    private ArrayList<Climber> climbers;
+    @ManyToMany(mappedBy = "groups")
+    private ArrayList<Climber> climbers = new ArrayList<>();
     @NotNull
     private boolean isOpen;
     @NotNull
@@ -22,7 +22,8 @@ public class Group {
     @NotNull
     private Calendar climbDate;
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mountain_id", referencedColumnName = "id")
     private Mountain mountain;
 
     public Group() {
@@ -98,7 +99,7 @@ public class Group {
     }
 
     public void addClimber(Climber climber) {
-        if (climber.getGroup() == this) {
+        if (climber.getGroups().contains(this)) {
             System.out.println("Альпинист уже был добавлен в эту группу ранее");
         } else if (isOpen) {
             climbers.add(climber);
@@ -111,8 +112,7 @@ public class Group {
 
     public void removeClimber(Climber climber) {
         this.climbers.remove(climber);
-        this.climbers.trimToSize();
-        climber.setGroup(null);
+        climber.removeGroup(this);
         this.isOpen();
     }
 

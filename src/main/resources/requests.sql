@@ -1,19 +1,19 @@
 -- создание таблицы Альпинист
 
-CREATE TABLE IF NOT EXISTS tb_climbers(climber_id SERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL,
-address VARCHAR(255) NOT NULL, group_number INTEGER)
+CREATE TABLE IF NOT EXISTS tb_climbers(id SERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL,
+address VARCHAR(255) NOT NULL, group_numbers INTEGER)
 
 -- Добавление данных в таблицу Альпинист
 
- INSERT INTO tb_climbers (name, address) VALUES (?, ?) RETURNING climber_id
+ INSERT INTO tb_climbers (name, address) VALUES (?, ?) RETURNING id
 
 -- Изменение имени альпиниста
 
- UPDATE tb_climbers SET name = ? WHERE climber_id = ?
+ UPDATE tb_climbers SET name = ? WHERE id = ?
 
 -- Получение идентификатором и имен альпинистов старше 30 и младше 50 лет
 
-SELECT climber_id, name FROM tb_climbers WHERE age > 30 AND age < 50
+SELECT id, name FROM tb_climbers WHERE age > 30 AND age < 50
 
 -- Получение названий гор, высота которых больше указанной
 

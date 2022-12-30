@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Objects;
 
 @Entity
@@ -11,7 +12,7 @@ import java.util.Objects;
 public class Mountain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mountain_id")
+    @Column
     int id;
     @NotNull
     @Length(min = 4)
@@ -24,8 +25,8 @@ public class Mountain {
     @Length(min = 100)
     private int height;
 
-    @OneToMany(mappedBy = "mountain", fetch = FetchType.LAZY)
-    private Group group;
+    @OneToMany(mappedBy = "mountain")
+    private ArrayList<Group> groups = new ArrayList<>();
 
 
     public Mountain() {
@@ -71,12 +72,16 @@ public class Mountain {
         this.height = height;
     }
 
-    public Group getGroup() {
-        return group;
+    public ArrayList<Group> getGroups() {
+        return groups;
     }
 
     protected void setGroup(Group group) {
-        this.group = group;
+        this.groups.add(group);
+    }
+    protected void removeGroup(Group group) {
+        this.groups.remove(group);
+        this.groups.trimToSize();
     }
 
     @Override
@@ -94,7 +99,7 @@ public class Mountain {
                 ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", height=" + height +
-                ", group=" + group.getNumber() +
+                ", group=" + groups.toString() +
                 '}';
     }
 

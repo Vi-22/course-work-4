@@ -68,5 +68,6 @@ public class Application {
         climberDao.update(climber2);
         group1.addClimber(climber1);
         groupDao.update(group1);
+        climberDao.update(climber1);
     }
 }
